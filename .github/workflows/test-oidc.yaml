@@ -1,24 +1,24 @@
 name: "Test OIDC & Approval Gate"
 
 on:
-  workflow_dispatch: # Enables manual execution button in GitHub UI
+  workflow_dispatch:
 
 permissions:
-  id-token: write  # Critical: enables GitHub OIDC token generation
+  id-token: write
   contents: read
 
 jobs:
   deploy-prod:
     name: "Test Production Deployment"
     runs-on: ubuntu-latest
-    environment: production # Triggers manual approval and loads environment vars
+    environment: production
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        uses: actions/checkout@v4
 
       - name: Assume AWS Role via OIDC
-        uses: aws-actions/configure-aws-credentials@ece51a44e5488c00570cc9c9438ea233632ab3e1 # v4.1.0
+        uses: aws-actions/configure-aws-credentials@v4
         with:
           role-to-assume: ${{ vars.DEVOPS_ROLE_ARN }}
           aws-region: ${{ vars.AWS_REGION }}
