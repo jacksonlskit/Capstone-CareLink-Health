@@ -1,17 +1,17 @@
 name: "Test OIDC & Approval Gate"
 
 on:
-  workflow_dispatch: # Enables manual execution button in GitHub UI
+  workflow_dispatch:
 
 permissions:
-  id-token: write  # Critical: enables GitHub OIDC token generation
+  id-token: write
   contents: read
 
 jobs:
   deploy-prod:
     name: "Test Production Deployment"
     runs-on: ubuntu-latest
-    environment: production # Triggers manual approval and loads environment vars
+    environment: production
 
     steps:
       - name: Checkout Repository
