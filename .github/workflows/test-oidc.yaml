@@ -15,14 +15,14 @@ jobs:
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        uses: actions/checkout@v4
 
       - name: Assume AWS Role via OIDC
         uses: aws-actions/configure-aws-credentials@v4
         with:
           role-to-assume: ${{ vars.DEVOPS_ROLE_ARN }}
           aws-region: ${{ vars.AWS_REGION }}
-    audience: sts.amazonaws.com
+          audience: sts.amazonaws.com
 
       - name: Verify AWS Identity
         run: |
